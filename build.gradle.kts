@@ -31,6 +31,11 @@ dependencies {
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation ("com.alibaba:fastjson:2.0.15")
+	implementation ("org.mybatis:mybatis-spring:2.0.6")
+	implementation ("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+	implementation ("org.springframework.boot:spring-boot-starter-web:2.7.0")
+	implementation ("mysql:mysql-connector-java:8.0.30")
+	implementation ("com.squareup.okhttp3:okhttp:4.10.0")
 }
 
 tasks.withType<KotlinCompile> {
