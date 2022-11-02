@@ -75,7 +75,7 @@ class ProductController {
     }
 
     /**
-     * 生成预订单信息
+     * 生成预订单信息, 检查库存信息。
      */
     @PostMapping("/preorder")
     fun makePreOrder(@RequestBody jsonObject: JSONObject) : JSONObject {
