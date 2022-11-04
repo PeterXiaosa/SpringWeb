@@ -31,13 +31,14 @@ interface UserMapper {
     fun getAllUser(): List<User?>?
 
     @Select("SELECT * from user where token = #{token}")
-    fun getUserByToken(@Param("token") token : String) : User
+    @ResultMap(value = ["userMap"])
+    fun getUserByToken(@Param("token") token : String) : User?
 
     @Select("SELECT * from user where openId = #{openId}")
     @ResultMap(value = ["userMap"])
-    fun getUserByOpenId(@Param("openId") openId : String) : User
+    fun getUserByOpenId(@Param("openId") openId : String) : User?
 
     @Select("SELECT * from user where id=(select MAX(id) from user)")
     @ResultMap(value = ["userMap"])
-    fun getMaxIdUser() : User
+    fun getMaxIdUser() : User?
 }

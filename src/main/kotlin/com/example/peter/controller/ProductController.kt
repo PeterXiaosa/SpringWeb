@@ -27,6 +27,7 @@ class ProductController {
         jsonObject.put("img_swiper", array)
         jsonObject.put("img_ad", "../../images/duola.png")
         jsonObject.put("img_category", categoryArray)
+        jsonObject["code"] = 0
         return jsonObject
     }
 
@@ -70,6 +71,7 @@ class ProductController {
         promotion1Object.put("v", 10)
         promotionArray.add(promotion1Object)
         res.put("promotion", promotionArray)
+        res["code"] = 0
 
         return res
     }
@@ -77,11 +79,11 @@ class ProductController {
     /**
      * 生成预订单信息, 检查库存信息。
      */
-    @PostMapping("/preorder")
-    fun makePreOrder(@RequestBody jsonObject: JSONObject) : JSONObject {
+    @PostMapping("/checkProductNum")
+    fun makePreOrder(@RequestBody productArray: JSONArray) : JSONObject {
         val res = JSONObject()
-        res["order_id"] = 1
-
+        // 检查数据库中库存，不够的话返回非0
+        res["code"] = 0
         return res
     }
 

@@ -58,13 +58,12 @@ class UserController {
         if (wxJSONObject["errcode"] == null) {
             val openId = wxJSONObject["openid"] as String
             val sessionKey = wxJSONObject["session_key"] as String
-
             var user = UserUtil.getUserByOpenId(openId)
             if (user == null) {
                 user = UserUtil.generateUser(openId, sessionKey)
             }
 
-            res["result"] = 0
+            res["code"] = 0
             res["userId"] = user.userId
             res["tokenEffectiveTime"] = user.tokenEffectiveTime
             res["token"] = user.token
@@ -72,7 +71,7 @@ class UserController {
         } else {
             val errCode = wxJSONObject["errcode"]
             val errMsg = wxJSONObject["errmsg"]
-            res["result"] = errCode
+            res["code"] = errCode
             res["errmsg"] = errMsg
         }
 

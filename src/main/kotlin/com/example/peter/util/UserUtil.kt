@@ -2,30 +2,15 @@ package com.example.peter.util
 
 import com.example.peter.bean.User
 import com.example.peter.mapper.UserMapper
-import org.springframework.beans.factory.annotation.Autowired
-import java.text.SimpleDateFormat
-import javax.annotation.PostConstruct
 
 class UserUtil {
 
-//    @Autowired(required = true)
-//    public var userMapper: UserMapper? = null
-//
-//    @PostConstruct
-//    fun initMapper() {
-//        userUtil = this
-//    }
-
     companion object {
-//        var userUtil : UserUtil? = null
         var userMapper : UserMapper? = null
 
         @JvmStatic
-        fun getUserIdByToken(token :String): User? {
-//            val user = userMapper?.getUserByToken(token)
-            val user = userMapper?.getUserByToken(token)
-
-            return null
+        fun getUserIdByToken(token: String): User? {
+            return userMapper?.getUserByToken(token)
         }
 
         @JvmStatic
