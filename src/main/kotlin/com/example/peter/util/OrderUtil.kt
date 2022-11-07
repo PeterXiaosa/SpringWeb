@@ -24,6 +24,7 @@ class OrderUtil {
             order.userId = userId
             order.orderId = generateOrderId(userId)
             order.orderStatus = 0
+            order.orderImage = orderListArray.getJSONObject(0)["imageUrl"] as String
             order.orderPrice = caculateOrderPrice(orderListArray)
             order.productSum = calculateOrderCount(orderListArray)
             order.productList = generateProductListArray(orderListArray)
@@ -32,6 +33,12 @@ class OrderUtil {
 
             
             orderMapper?.insert(order)
+        }
+
+        @JvmStatic
+        fun getAllOrder(userId:String) : List<Order?>?{
+            val orderList : List<Order?>? = orderMapper?.getOrderByUserId(userId)
+            return orderList
         }
 
         private fun calculateOrderCount(orderListArray: JSONArray?): Int {

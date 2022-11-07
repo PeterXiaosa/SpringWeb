@@ -65,31 +65,6 @@ class ProductController {
             listArray.add(categoryJson)
         }
 
-//        val ganmaoList = mutableListOf<Product>()
-//        ganmaoList.add(Product(1, "产品1", BigDecimal.valueOf(10), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(2, "产品2",  BigDecimal.valueOf(20), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(3, "产品3",  BigDecimal.valueOf(30), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(4, "产品4",  BigDecimal.valueOf(40), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(5, "产品5",  BigDecimal.valueOf(50), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(6, "产品6",  BigDecimal.valueOf(60), "../../images/duola.png", 100))
-//        ganmaoList.add(Product(7, "产品7",  BigDecimal.valueOf(70), "../../images/duola.png", 100))
-//        val category1FoodArray : JSONArray = JSONArray.parseArray(JSON.toJSONString(ganmaoList))
-//
-//        val category1Json = JSONObject()
-//        category1Json.put("type", "感冒类")
-//        category1Json.put("list", category1FoodArray)
-//
-//        val category2Json = JSONObject()
-//        category2Json.put("type", "咳嗽类")
-//        val kesouList = mutableListOf<Product>()
-//        kesouList.add(Product(8, "物品1",  BigDecimal.valueOf(80), "../../images/duola.png", 100))
-//        kesouList.add(Product(9, "物品2",  BigDecimal.valueOf(90), "../../images/duola.png", 100))
-//
-//        val category2FoodArray : JSONArray = JSONArray.parseArray(JSON.toJSONString(kesouList))
-//        category2Json.put("list", category2FoodArray)
-//        listArray.add(category1Json)
-//        listArray.add(category2Json)
-
         res["productList"] = listArray
 
         val promotionArray = JSONArray()
@@ -143,6 +118,15 @@ class ProductController {
         val res = JSONObject()
         res["id"] = 1
 
+        return res
+    }
+
+    @GetMapping("addProduct")
+    fun addProduct() : JSONObject {
+        val res = JSONObject()
+
+
+        res["code"] = 0
         return res
     }
 }

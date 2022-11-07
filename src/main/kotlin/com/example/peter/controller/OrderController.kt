@@ -2,16 +2,13 @@ package com.example.peter.controller
 
 import com.alibaba.fastjson2.JSONArray
 import com.alibaba.fastjson2.JSONObject
+import com.example.peter.bean.Order
 import com.example.peter.mapper.OrderMapper
 import com.example.peter.mapper.UserMapper
 import com.example.peter.util.OrderUtil
 import com.example.peter.util.UserUtil
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import javax.annotation.PostConstruct
 
 @RestController
@@ -43,8 +40,26 @@ class OrderController {
     }
 
     @PostMapping(value = ["queryOrder/{token}"])
-    fun queryOrder(@RequestBody jsonObject: JSONObject) : JSONObject {
+    fun queryOrder(@RequestBody jsonObject: JSONObject, @PathVariable("token") token:String) : JSONObject {
         val res = JSONObject()
+
+        return res
+    }
+
+    @GetMapping(value = ["/getAllOrder/{token}"])
+    fun getAllOrder(@PathVariable("token") token:String) : JSONObject {
+        val res = JSONObject()
+
+        val user = UserUtil.getUserIdByToken(token)
+        if(user == null) {
+            res["code"] = 1
+            res["errmsg"] = "Token用户不存在"
+        } else {
+            // 将订单信息插入数据库
+            val orderList : List<Order?>? = OrderUtil.getAllOrder(user.userId)
+            res["code"] = 0
+            res["data"] = JSONArray(orderList)
+        }
 
         return res
     }

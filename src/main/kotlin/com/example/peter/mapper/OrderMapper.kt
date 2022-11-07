@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.*
 
 interface OrderMapper {
     @Insert("INSERT INTO `order`(user_id, order_id, order_status, product_list, order_price, product_sum, order_time" +
-            ", pay_time, receive_address)" +
+            ", pay_time, receive_address, order_image)" +
             " VALUES(#{userId}, #{orderId}, #{orderStatus}, #{productList}, #{orderPrice}, #{productSum}, #{orderTime}" +
-            ", #{payTime}, #{receiveAddressIndex})")
+            ", #{payTime}, #{receiveAddressIndex}, #{orderImage})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     fun insert(order: Order?)
 
@@ -18,11 +18,12 @@ interface OrderMapper {
         Result(property = "orderId", column = "order_id"),
         Result(property = "orderStatus", column = "order_status"),
         Result(property = "productList", column = "product_list"),
-        Result(property = "order_price", column = "orderPrice"),
-        Result(property = "product_sum", column = "productSum"),
-        Result(property = "order_time", column = "orderTime"),
-        Result(property = "pay_time", column = "payTime"),
-        Result(property = "receive_address", column = "receiveAddressIndex"),
+        Result(property = "orderPrice", column = "order_price"),
+        Result(property = "productSum", column = "product_sum"),
+        Result(property = "orderTime", column = "order_time"),
+        Result(property = "payTime", column = "pay_time"),
+        Result(property = "receiveAddressIndex", column = "receive_address"),
+        Result(property = "orderImage", column = "order_image")
     ])
     fun getAllOrder(): List<Order?>?
 
