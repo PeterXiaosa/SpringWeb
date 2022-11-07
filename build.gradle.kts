@@ -19,6 +19,7 @@ configurations {
 }
 
 repositories {
+	jcenter()
 	mavenCentral()
 }
 
@@ -36,6 +37,7 @@ dependencies {
 	implementation ("org.springframework.boot:spring-boot-starter-web:2.7.0")
 	implementation ("mysql:mysql-connector-java:8.0.30")
 	implementation ("com.squareup.okhttp3:okhttp:4.10.0")
+	implementation ("com.github.promeg:tinypinyin:2.0.3") // TinyPinyin核心包，约80KB
 }
 
 tasks.withType<KotlinCompile> {

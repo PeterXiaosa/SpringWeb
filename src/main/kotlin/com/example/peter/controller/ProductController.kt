@@ -4,13 +4,14 @@ import com.alibaba.fastjson2.JSON
 import com.alibaba.fastjson2.JSONArray
 import com.alibaba.fastjson2.JSONObject
 import com.example.peter.bean.Product
-import com.example.peter.mapper.OrderMapper
 import com.example.peter.mapper.ProductMapper
-import com.example.peter.util.OrderUtil
+import com.example.peter.util.FileUtil
 import com.example.peter.util.ProductUtil
+import com.github.promeg.pinyinhelper.Pinyin
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
+import java.util.*
 import javax.annotation.PostConstruct
 
 @RestController
@@ -125,8 +126,34 @@ class ProductController {
     fun addProduct() : JSONObject {
         val res = JSONObject()
 
+        var listFileName = ArrayList<String>()
+
+        FileUtil.getAllFileName("C:/Users/86411/Downloads/productzip/yibu/", listFileName)
+        for (name in listFileName) {
+//            System.out.println(name);
+            FileUtil.renameFile(name)
+        }
+
+
+        var base : Int = 0
+
+        listFileName.forEach{
+            val product = Product()
+            var name = it
+            name = name.replace("C:/Users/86411/Downloads/productzip/one/", "")
+            product.name = name
+            base++
+            product.imageUrl = "http://xiaosalovejie.top/images/yibu/" + Pinyin.toPinyin(name,"")
+            product.price = BigDecimal.valueOf(1)
+            product.stockNum = 9999
+            product.productId = base
+            product.productType = "一部"
+
+//            productMapper?.insert(product)
+        }
 
         res["code"] = 0
         return res
     }
+
 }

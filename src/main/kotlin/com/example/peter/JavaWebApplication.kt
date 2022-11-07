@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @MapperScan("com.example.peter.mapper")
+//@SpringBootApplication(scanBasePackages = ["com.example.peter.util"])
 @SpringBootApplication
 class JavaWebApplication
 
