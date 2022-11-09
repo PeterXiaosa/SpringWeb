@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.JSONArray
 import com.alibaba.fastjson2.JSONObject
 import com.example.peter.bean.Product
 import com.example.peter.mapper.ProductMapper
+import com.example.peter.util.FileKotUtil
 import com.example.peter.util.FileUtil
 import com.example.peter.util.ProductUtil
 import com.github.promeg.pinyinhelper.Pinyin
@@ -125,31 +126,37 @@ class ProductController {
     @GetMapping("addProduct")
     fun addProduct() : JSONObject {
         val res = JSONObject()
+        val nameMap = mutableMapOf<String, String>()
 
         var listFileName = ArrayList<String>()
+        val fileSuffixPath = "D:/Temp/yiliao/"
 
-        FileUtil.getAllFileName("C:/Users/86411/Downloads/productzip/yibu/", listFileName)
+        FileKotUtil.getAllFileName(fileSuffixPath, listFileName)
         for (name in listFileName) {
-//            System.out.println(name);
-            FileUtil.renameFile(name)
+            FileKotUtil.renameFile(name, nameMap)
         }
 
 
-        var base : Int = 0
+        val maxIdProduct = ProductUtil.productMapper?.getMaxIdProduct()
+        var base = 0
+
+        maxIdProduct?.let {
+            base = maxIdProduct.productId!!
+        }
 
         listFileName.forEach{
             val product = Product()
             var name = it
-            name = name.replace("C:/Users/86411/Downloads/productzip/one/", "")
+            name = name.replace(fileSuffixPath, "")
             product.name = name
             base++
-            product.imageUrl = "http://xiaosalovejie.top/images/yibu/" + Pinyin.toPinyin(name,"")
+            product.imageUrl = "http://xiaosalovejie.top/images/yiliao/" + nameMap.get(it)?.replace("d:/temp/yiliao/", "")
             product.price = BigDecimal.valueOf(1)
             product.stockNum = 9999
             product.productId = base
-            product.productType = "一部"
+            product.productType = "医疗"
 
-//            productMapper?.insert(product)
+            productMapper?.insert(product)
         }
 
         res["code"] = 0

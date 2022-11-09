@@ -3,9 +3,9 @@ package com.example.peter.util;
 import com.github.promeg.pinyinhelper.Pinyin;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 public class FileUtil {
 
@@ -16,7 +16,9 @@ public class FileUtil {
         if (names != null) {
             String[] completNames = new String[names.length];
             for (int i = 0; i < names.length; i++) {
-                completNames[i] = path + names[i];
+                String temp = path + names[i];
+                temp = temp.replace("D:/Temp/yibu/", "");
+                completNames[i] = temp;
             }
             listFileName.addAll(Arrays.asList(completNames));
         }
@@ -27,15 +29,16 @@ public class FileUtil {
         }
     }
 
-    public static void renameFile(String fileName) {
+    public static void renameFile(String fileName, Map<String, String> nameMap) {
         String oldFileName = fileName;
 
         File oldFile = new File(oldFileName);
         String newFileName = Pinyin.toPinyin(oldFileName, "").toLowerCase();
-//        String newFileName = filePath+File.separator+fmdate.format(new Date())+"."+fileName.split("\\.")[1];
+
         File newFile = new File(newFileName);
         if (oldFile.exists() && oldFile.isFile()) {
 //            oldFile.renameTo(newFile);
+            nameMap.put(oldFileName, newFileName);
         }
         System.out.println(newFileName);
     }
