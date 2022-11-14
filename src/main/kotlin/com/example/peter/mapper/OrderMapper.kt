@@ -38,4 +38,8 @@ interface OrderMapper {
     @Select("SELECT * from `order` where id=(select MAX(id) from `order`)")
     @ResultMap(value = ["orderMap"])
     fun getMaxIdOrder() : Order?
+
+    @Update("update `order` set order_status=3 where order_id=#{orderId}")
+    @ResultMap(value = ["orderMap"])
+    fun cancelOrder(order : Order)
 }

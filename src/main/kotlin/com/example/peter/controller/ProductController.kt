@@ -31,17 +31,17 @@ class ProductController {
     fun foodIndex() : JSONObject{
         val jsonObject = JSONObject()
         val array = JSONArray()
-        array.add("../../images/duola.png")
-        array.add("../../images/duola.png")
-        array.add("../../images/duola.png")
-        array.add("../../images/duola.png")
+        array.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
+        array.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
+        array.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
+        array.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
         val categoryArray = JSONArray()
-        categoryArray.add("../../images/duola.png")
-        categoryArray.add("../../images/duola.png")
-        categoryArray.add("../../images/duola.png")
+        categoryArray.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
+        categoryArray.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
+        categoryArray.add("http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
 
         jsonObject.put("img_swiper", array)
-        jsonObject.put("img_ad", "../../images/duola.png")
+        jsonObject.put("img_ad", "http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png")
         jsonObject.put("img_category", categoryArray)
         jsonObject["code"] = 0
         return jsonObject
@@ -96,13 +96,13 @@ class ProductController {
         val res = JSONObject()
         val orderFoodArray = JSONArray()
         val orderFood1 = JSONObject()
-        orderFood1["image_url"] = "../../images/duola.png"
+        orderFood1["image_url"] = "http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png"
         orderFood1["name"] = "物品1"
         orderFood1["price"] = 10
         orderFood1["number"] = 1
         orderFoodArray.add(orderFood1)
         val orderFood2 = JSONObject()
-        orderFood2["image_url"] = "../../images/duola.png"
+        orderFood2["image_url"] = "http://xiaosalovejie.top/images/yibu/10daixiaoeryanbiankeli.png"
         orderFood2["name"] = "物品2"
         orderFood2["price"] = 20
         orderFood2["number"] = 1
@@ -156,7 +156,7 @@ class ProductController {
             product.productId = base
             product.productType = "医疗"
 
-            productMapper?.insert(product)
+//            productMapper?.insert(product)
         }
 
         res["code"] = 0
